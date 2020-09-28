@@ -11,21 +11,23 @@ fn main() {
 
 	println!("Загадонное число: {}", secret_numb);
 
-	println!("Пожалуйста, введите предположение...");
+	loop {
+		println!("Пожалуйста, введите предположение...");
 
-	let mut guess = String::new();
+		let mut guess = String::new();
 
-	io::stdin().read_line(&mut guess)
-		.expect("Не удалось прочитать строку!");
+		io::stdin().read_line(&mut guess)
+			.expect("Не удалось прочитать строку!");
 
-	let guess: u32 = guess.trim().parse()
-		.expect("Пожалуйста, введите число!");
+		let guess: u32 = guess.trim().parse()
+			.expect("Пожалуйста, введите число!");
 
-	println!("Ваша попытка: {}", guess);
+		println!("Ваша попытка: {}", guess);
 
-	match guess.cmp(&secret_numb) {
-		Ordering::Less		=> println!("Слишком маленькое число!"),
-		Ordering::Greater	=> println!("Слишком большое!"),
-		Ordering::Equal		=> println!("Вы выиграли!"),
+		match guess.cmp(&secret_numb) {
+			Ordering::Less		=> println!("Слишком маленькое число!"),
+			Ordering::Greater	=> println!("Слишком большое!"),
+			Ordering::Equal		=> println!("Вы выиграли!"),
+		}
 	}
 }
