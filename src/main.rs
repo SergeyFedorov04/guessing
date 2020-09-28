@@ -19,8 +19,10 @@ fn main() {
 		io::stdin().read_line(&mut guess)
 			.expect("Не удалось прочитать строку!");
 
-		let guess: u32 = guess.trim().parse()
-			.expect("Пожалуйста, введите число!");
+		let guess: u32 = match guess.trim().parse() {
+			Ok(num) => num,
+			Err(_) => continue,
+		};
 
 		println!("Ваша попытка: {}", guess);
 
